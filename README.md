@@ -95,8 +95,8 @@ The directive will cast to string and handle the following data types:
 
 - Strings and Numbers: will output as-is, i.e. `"foo"` or `"25"`
 - Booleans: will be cast to `"0"`, `"1"`, or `"false"`, `"true"` (see Configuration)
-- Arrays: will be joined with a space, i.e. `"foo bar baz"`
-- Objects: will be `JSON.stringify()`ed then have brackets, quotes and commas removed, i.e. `"a:1 b:2 c:3"`
+- Arrays: will be joined with a space, i.e. `['a', 'b']` results in `"a b"`
+- Objects: are filtered by key on truthy values, i.e. `{a: 1, b:0}` results in `"a"`
 - Dates: will have their `toISOString()` called, i.e. `"2020-04-22T21:27:52.710Z"`
 
 # Configuration
