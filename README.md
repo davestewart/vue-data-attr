@@ -1,4 +1,4 @@
-# Vue `data-*` Directive
+# Vue data-* Directive
 
 > Vue directive to bind properties as data-* attributes
 
@@ -50,7 +50,7 @@ yarn add vue-data-attr
 
 # Usage
 
-### Setup
+## Setup
 
 Import and use the directive in your main application file:
 
@@ -61,7 +61,7 @@ import vdata from 'vue-data-attr'
 Vue.use(vdata)
 ```
 
-### Components
+## Components
 
 Usage is the same as `v-bind` - just pass in an object:
 
@@ -91,11 +91,13 @@ export default {
 
 # Configuration
 
-To register the directibe under a name other than `v-data` just pass a string:
+To register the directive under a name other than `v-data` just pass a string:
 
 ```js
 Vue.use(vdata, 'data-attr')
 ```
+
+## Global configuration
 
 To configure how the directive renders attributes, pass an object:
 
@@ -129,3 +131,24 @@ Whether to render booleans as text or numbers (defaults to `false`)
 - `false` - render booleans as numbers, i.e. `<span data-focused="1" />`
 - `true` - render booleans as text, i.e. `<span data-focused="true" />`
 
+
+## Local configuration
+
+You can override the `empty` and `bools` options using the directive's modifiers:
+
+```vue
+<template>
+  <div class="ui-select" v-data.empty.bools="hooks">
+    ...
+  </div>
+</template>
+```
+
+Assuming a boolean and empty value from the previous examples, the directive would render:
+
+
+```html
+<div class="ui-select" data-focused="true" data-icon>
+  ...
+</div>
+```
