@@ -21,7 +21,12 @@ function getValue (value, modifiers = {}) {
 
     // objects
     else {
-      value = JSON.stringify(value).replace(/[{}"]/g, '').replace(/,/g, ' ')
+      value = Object.keys(value).reduce((output, key) => {
+        if (value[key]) {
+          output.push(key)
+        }
+        return output
+      }, []).join(' ')
     }
   }
 
