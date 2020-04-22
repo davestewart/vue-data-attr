@@ -1,8 +1,5 @@
 function bind (el, data, modifiers) {
   Object.keys(data).forEach(key => {
-    // options
-    modifiers = Object.assign(options, modifiers)
-
     // value
     let value = data[key]
 
@@ -39,6 +36,6 @@ export default function (Vue, config = {}) {
     if (oldValue) {
       unbind(el, oldValue)
     }
-    bind(el, value, modifiers)
+    bind(el, value, Object.assign(options, modifiers))
   })
 }
