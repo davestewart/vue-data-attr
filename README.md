@@ -1,4 +1,4 @@
-# Vue data-* Directive
+# Vue data attribute (data-*) directive
 
 > Vue directive to bind properties as data-* attributes
 
@@ -40,7 +40,7 @@ Install from NPM:
 
 ```bash
 # npm
-npm i --save vue-data-attr
+npm i vue-data-attr
 ```
 
 ```bash
@@ -91,31 +91,19 @@ export default {
 
 # Configuration
 
-To register the directive under a name other than `v-data` just pass a string:
-
-```js
-Vue.use(vdata, 'data-attr')
-```
-
 ## Global configuration
 
 To configure how the directive renders attributes, pass an object:
 
 ```js
 Vue.use(vdata, {
-  name: 'data-attr',
   empty: true,
-  bools: true
+  bools: true,
+  name: 'data-attr',
 })
 ```
 
 The options are as follows:
-
-#### `name`
-
-Register the directive under a different name (defaults to `"data"`)
-
-- `"data-attr"` - register as `data-attr` so use in templates with `<span v-data-attr="hooks" />`
 
 #### `empty`
 
@@ -130,6 +118,12 @@ Whether to render booleans as text or numbers (defaults to `false`)
 
 - `false` - render booleans as numbers, i.e. `<span data-focused="1" />`
 - `true` - render booleans as text, i.e. `<span data-focused="true" />`
+
+#### `name`
+
+Register the directive under a different name (defaults to `"data"`)
+
+- `"data-attr"` - register as `data-attr` so use in templates with `<span v-data-attr="hooks" />`
 
 
 ## Local configuration

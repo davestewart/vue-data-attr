@@ -34,9 +34,6 @@ const options = {
 }
 
 export default function (Vue, config = {}) {
-  if (typeof config === 'string') {
-    config = { name: config }
-  }
   Object.assign(options, config)
   Vue.directive(options.name, function (el, { value, oldValue, modifiers }) {
     if (oldValue) {
@@ -45,4 +42,3 @@ export default function (Vue, config = {}) {
     bind(el, value, modifiers)
   })
 }
-
