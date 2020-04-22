@@ -1,6 +1,6 @@
 {
   "name": "vue-data-attr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue directive to bind properties as data-* attributes",
   "author": "Dave Stewart",
   "license": "MIT",

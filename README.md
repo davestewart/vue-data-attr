@@ -32,7 +32,7 @@ You can then made additional choices in your CSS to style your components:
 }
 ```
 
-Attributes have the same specificity as classes, so it won't affect things like BEM. additionally, you won't need to think of clever class-naming schemes, the data attribute just expresses what is in the component.
+Attributes have the same specificity as classes, so it won't affect things like BEM. Additionally, you won't need to think of clever class-naming schemes, the data attribute just expresses what is in the component.
 
 # Installation
 
@@ -69,54 +69,63 @@ Usage is the same as `v-bind` - just pass in an object:
 <template>
   <div class="ui-select" v-data="hooks">
     ...
-	</div>
+  </div>
 </template>
 
 <script>
 export default {
+  ...
   computed: {
     hooks () {
       return {
         focused: this.hasFocus,
         icon: this.icon
-    	}
-    } 
+      }
+    }
+    ...
   }
+  ...
 }
 </script>
 ```
 
 # Configuration
 
-To register the directibe under a name other than `v-data` just pass a single `String`:
+To register the directibe under a name other than `v-data` just pass a string:
 
 ```js
 Vue.use(vdata, 'data-attr')
 ```
 
-To configure how the directive renders attributes, pass an `Object`:
+To configure how the directive renders attributes, pass an object:
 
 ```js
 Vue.use(vdata, {
   name: 'data-attr',
   empty: true,
-	bools: true
+  bools: true
 })
 ```
 
 The options are as follows:
 
-- `name`: register the directive under a different name (defaults to `"data"`)
+#### `name`
 
-  - `"data-attr"` - register as `data-attr` so use in templates with `<span v-data-attr="hooks" />`
-- `empty` : whether to render attributes for `undefined` values or empty strings `""` (defaults to `false`)
+Register the directive under a different name (defaults to `"data"`)
 
-- - `false` - don't render empty attributes i.e. `<span />`
-  - `true` - render empty attributes, i.e. `<span data-thing />`
+- `"data-attr"` - register as `data-attr` so use in templates with `<span v-data-attr="hooks" />`
 
-- `bools`: whether to render booleans as text or numbers (defaults to `false`)
+#### `empty`
 
-  - `false` - render booleans as numbers, i.e. `<span data-focused="1" />`
-  - `true` - render booleans as text, i.e. `<span data-focused="true" />`
+Whether to render attributes for `undefined` values or empty strings `""` (defaults to `false`)
 
-  
+- `false` - don't render empty attributes i.e. `<span />`
+- `true` - render empty attributes, i.e. `<span data-thing />`
+
+#### `bools`
+
+Whether to render booleans as text or numbers (defaults to `false`)
+
+- `false` - render booleans as numbers, i.e. `<span data-focused="1" />`
+- `true` - render booleans as text, i.e. `<span data-focused="true" />`
+
