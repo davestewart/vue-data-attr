@@ -1,15 +1,45 @@
+function isObject (value) {
+  return value && typeof value === 'object'
+}
+
+function isEmpty (value) {
+  return typeof value === 'undefined' || value === ''
+}
+
+function getValue (value, modifiers = {}) {
+  // filter and serialize arrays
+  if (Array.isArray(value)) {
+    value = value.filter(value => !isEmpty(value)).join(' ')
+  }
+
+  // objects
+  if (isObject(value)) {
+    // convert dates to iso
+    if ('toISOString' in value) {
+      value = value.toISOString()
+    }
+
+    // objects
+    else {
+      value = JSON.stringify(value).replace(/[{}"]/g, '').replace(/,/g, ' ')
+    }
+  }
+
+  // convert booleans
+  if (modifiers.bools === false && (value === true || value === false)) {
+    value = value === true ? 1 : 0
+  }
+
+  return value
+}
+
 function bind (el, data, modifiers) {
   Object.keys(data).forEach(key => {
     // value
-    let value = data[key]
-
-    // convert booleans
-    if (modifiers.bools === false && (value === true || value === false)) {
-      value = value === true ? 1 : 0
-    }
+    const value = getValue(data[key], modifiers)
 
     // skip undefined
-    if (modifiers.empty === false && (typeof value === 'undefined' || value === '')) {
+    if (modifiers.empty === false && isEmpty(value)) {
       return
     }
 
